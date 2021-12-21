@@ -1,8 +1,18 @@
 import React from 'react'
-
-export default function Dashboard() {
+import HOCAuth from '../Auth/Hoc'
+import Button from '@restart/ui/esm/Button'
+import { useNavigate } from 'react-router'
+ function Dashboard() {
+     const navigate = useNavigate()
+    const Token = localStorage.getItem("AccessToken")
+    const handleClick=()=>{
+        localStorage.clear()
+        navigate("/")
+    }
     return (
-        <div>
+        <HOCAuth>
+        <div className="w70">
+           
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
                         <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
@@ -92,7 +102,13 @@ export default function Dashboard() {
                                 </div>
                             </div>
                         </div>
+                   
+           
                     </div>
+                    <button onClick={handleClick}>Log Out</button>
+                  
         </div>
+        </HOCAuth>
     )
 }
+export default Dashboard

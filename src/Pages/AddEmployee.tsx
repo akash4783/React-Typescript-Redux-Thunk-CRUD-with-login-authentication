@@ -4,61 +4,88 @@ import { useDispatch,useSelector } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import "../assets/css/form.css"
 import { adduser } from '../redux/action';
-// import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
+import HOCAuth from '../Auth/Hoc';
 
-export default function AddEmployee (){
+ function AddEmployee (){
+
+  const role = {ADMIN: "ADMIN", EMPLOYEE: 'EMPLOYEE'}
     const dispatch = useDispatch()
- 
-
-
+    const navigate = useNavigate()
     const[data,setData]:any=useState({
         firstName:"",
         lastName:"",
         email:"",
-        password:"",
         mobile:"",
+        password:"",
         address:"",
         country:"",
         state:"",
         city:"",
-        userRole:"",
+        userRole:role.EMPLOYEE,
         designation:"",
-        salary:""
+       
     })
+    const[salary,setSalary]=useState<number>()
 
-const{firstName,lastName,email,password,mobile,address,country,state,city,userRole,designation,salary}=data
+const{firstName,lastName,email,mobile,address,country,state,city,userRole,designation,password}=data
 
     const handlesubmit=(e:any)=>{
-        if(!firstName || 
-            !lastName|| 
-            !email||
-             !password ||
-             ! mobile || 
-             !address || 
-             !country ||
-             !userRole||
-             !designation||
-             !salary||
-             !mobile||
-             !state){
-            alert("all field required")
-        }else{
-            dispatch(adduser(data))
-       
+      const FinalData = {
+        ...data,
+        salary:salary
+      }
+     
+     
+      dispatch(adduser(FinalData))
+            navigate("/employeehome")
+            
     
-    
-        }
+        
     
     }
 
     const handleChange=(e:any)=>{
         setData({...data, [e.target.name]:e.target.value})
     }
-    const checkData = useSelector((state:any)=>state.data.users)
-    console.log(checkData)
+    const handleChangeSalary=(e:any)=>{
+      setSalary(Number(e.target.value))
+    }
+    // const checkData = useSelector((state:any)=>state.data.users)
+    // console.log(checkData)
    return(
+     <HOCAuth>
     
-<div className="Form">
+<div className="Form w70">
+
+{/* <form>
+  <div className="form-row">
+    <div className="col">
+      <input type="text" className="form-control" placeholder="First name"/>
+    </div>
+    <div className="col">
+      <input type="text" className="form-control" placeholder="Last name"/>
+    </div>
+  </div>
+  <div className="form-row">
+    <div className="col">
+      <input type="text" className="form-control" placeholder="First name"/>
+    </div>
+    <div className="col">
+      <input type="text" className="form-control" placeholder="Last name"/>
+    </div>
+  </div>
+  <div className="form-row">
+    <div className="col">
+      <input type="text" className="form-control" placeholder="First name"/>
+    </div>
+    <div className="col">
+      <input type="text" className="form-control" placeholder="Last name"/>
+    </div>
+  </div>
+</form> */}
+
+
 <Form onSubmit={handlesubmit}>
   <Form.Group className="mb-3" controlId="formGroupEmail">
     <Form.Label>First Name</Form.Label>
@@ -73,12 +100,12 @@ const{firstName,lastName,email,password,mobile,address,country,state,city,userRo
     <Form.Control type="email" name="email" onChange={handleChange} value={email} placeholder="Enter email" />
   </Form.Group>
   <Form.Group className="mb-3" controlId="formGroupEmail">
-    <Form.Label>Password</Form.Label>
-    <Form.Control type="password" name="password" onChange={handleChange} value={password} placeholder="Enter password" />
-  </Form.Group>
-  <Form.Group className="mb-3" controlId="formGroupEmail">
     <Form.Label>Mobile</Form.Label>
     <Form.Control type="text" name="mobile" onChange={handleChange} value={mobile} placeholder="Enter Mobile" />
+  </Form.Group>
+  <Form.Group className="mb-3" controlId="formGroupEmail">
+    <Form.Label>Password</Form.Label>
+    <Form.Control type="password" name="password" onChange={handleChange} value={password} placeholder="Enter Password" />
   </Form.Group>
   <Form.Group className="mb-3" controlId="formGroupEmail">
     <Form.Label>Address</Form.Label>
@@ -106,17 +133,28 @@ const{firstName,lastName,email,password,mobile,address,country,state,city,userRo
   </Form.Group>
   <Form.Group className="mb-3" controlId="formGroupEmail">
     <Form.Label>salary</Form.Label>
-    <Form.Control type="number" name="salary"  onChange={handleChange} value={salary} placeholder="Enter Salary" />
-  </Form.Group>
+    <Form.Control type="number" name="salary"  onChange={handleChangeSalary} value={salary} placeholder="Enter Salary" />
+  </Form.Group> 
   
   <Button type="submit">Add</Button>
-
   <Button style={{marginLeft:"20px"}}>Go Back</Button>
 </Form>
 
 </div> 
+</HOCAuth>
 
 
     )
 
-}
+} export default AddEmployee
+
+
+
+
+
+
+
+
+
+
+

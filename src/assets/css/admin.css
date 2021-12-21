@@ -11299,7 +11299,7 @@
   /* Form CSS End */
 
   /* login page css */
-  .soupshop {
+  /* .soupshop {
     text-align: center;
     font-weight: 600;
     font-size: 35px;
@@ -11357,5 +11357,61 @@ a {
     right: -130px;
     cursor: pointer
 }
+.w70 {
+  display: inline-block;
+  width: 75%;
+  max-width: 100%;
+}
+div#wrapper {
+  display: inline-block;
+  width: 20%;
+} */
+.loginContainer {
+  display: flex;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+.login {
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  border-radius: 15px;
+}
+.login form {
+  padding: 30px;
+  background-color: rgb(39, 39, 194);
+  border-radius: 15px;
+}
+.login > * {
+  color: #fff;
+}
+.login .user-password {
+  position: relative;
+}
 
+.login .user-password .password-icon {
+  position: absolute;
+  top: 50px;
+  right: 0px;
+  transform: translate(-15px, -40px);
+  z-index: 9;
+  color: gray;
+}
+.login .user {
+  display: inline-block;
+  color: #fff;
+  margin-top: 20px;
+}
+.login .loginbtn {
+  display: inline-block;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 200px;
+  background-color: #fff;
+  color: #000;
+}
+.login .user a {
+  color: #fff;
+}
 /* end of login */

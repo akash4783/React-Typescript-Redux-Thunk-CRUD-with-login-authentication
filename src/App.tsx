@@ -1,28 +1,19 @@
-import React from 'react';
-// import SideNavBar from './Template/Layout/SideMenu/SideBar';
-import EmployeeHome from './Pages/EmployeeHome';
+import React,{useEffect} from 'react';
 import Route1 from './Template/Navigation/Rout';
-import AddEmployee from './Pages/AddEmployee';
-// import SideNavBar from './Template/Layout/SideMenu/SideNavBar';
-import SideNavBar from './Template/Layout/SideMenu/SideNavBar'
-import TopNavBar from './Template/Layout/TopMenu/TopNavBar';
-import Login from './Pages/Login';
-
-
+import { useSelector } from 'react-redux';
+import LoginRoute from "./Template/Navigation/LoginRoute";
+// import 'react-toastify/dist/ReactToastify.css';
 function App() {
+
+  const sucess = useSelector((state:any) => state.loginData?.isSuccess)
+  const Token = localStorage.getItem("AccessToken")
+  useEffect(() => {
+    
+    
+  }, [Token])
   return (
  <div>
-<Route1/>
-   {/* <Login/> */}
- {/* <SideNavBar/> */}
- 
- {/* <SideNavBar /> */}
-   {/* <TopNavBar/>
-<EmployeeHome/>   */}
-
-   {/* <Route1/> */}
-   {/* <AddEmployee/> */}
-   
+   { sucess ? <Route1/>:<LoginRoute/> }
    
  </div>
   );

@@ -1,7 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import HOCAuth from '../../../Auth/Hoc'
 
-export default function SideNavBar() {
+
+ function SideNavBar() {
     return (
+        <HOCAuth>
         <div id="wrapper">
 
  
@@ -18,11 +22,13 @@ export default function SideNavBar() {
         
             <hr className="sidebar-divider my-0"/>
 
-      
+         
             <li className="nav-item">
-                <a className="nav-link" href="/side">
+                <div className="nav-link" >
                     <i className="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+               <span>Dashboard</span> 
+                 </div>
+                   
             </li>
 
      
@@ -43,8 +49,8 @@ export default function SideNavBar() {
                 <div id="collapseTwo" className="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
                         <h6 className="collapse-header">Employee Data</h6>
-                        <a className="collapse-item" href="/createEmployee">Create Emplyoee</a>
-                        <a className="collapse-item" href="/employeehome">Emplyoee List</a>
+                       <div  className="collapse-item"><Link style={{ textDecoration: 'none' }}   to ="/createEmployee"> Add Emplyoee </Link></div>
+                       <div  className="collapse-item">  <Link style={{ textDecoration: 'none' }}  to="/employeehome">  Emplyoee List  </Link></div> 
                     </div>
                 </div>
             </li>
@@ -54,56 +60,48 @@ export default function SideNavBar() {
                 <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i className="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                    <span>Payroll</span>
                 </a>
                 <div id="collapseUtilities" className="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
-                        <h6 className="collapse-header">Custom Utilities:</h6>
-                        <a className="collapse-item" href="utilities-color.html">Colors</a>
-                        <a className="collapse-item" href="utilities-border.html">Borders</a>
-                        <a className="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a className="collapse-item" href="utilities-other.html">Other</a>
+                        {/* <h6 className="collapse-header">Custom Utilities:</h6> */}
+                        <div className="collapse-item"><Link style={{ textDecoration: 'none' }}   to ="/createPayroll"> Add Payrole </Link></div>
+                        <div className="collapse-item"><Link  style={{ textDecoration: 'none' }} to ="/payrollList"> payrollList </Link></div>
+                    
+                       
                     </div>
                 </div>
             </li>
 
             
-            <hr className="sidebar-divider"/>
+       
 
      
-            <div className="sidebar-heading">
+            {/* <div className="sidebar-heading">
                 Addons
-            </div>
+            </div> */}
 
   
             <li className="nav-item">
                 <a className="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i className="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>Increment</span>
                 </a>
                 <div id="collapsePages" className="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div className="bg-white py-2 collapse-inner rounded">
-                        <h6 className="collapse-header">Login Screens:</h6>
-                        <a className="collapse-item" href="login.html">Login</a>
-                        <a className="collapse-item" href="register.html">Register</a>
-                        <a className="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div className="collapse-divider"></div>
+                        {/* <h6 className="collapse-header">Login Screens:</h6> */}
+                        <div className="collapse-item"><Link style={{ textDecoration: 'none' }}  to ="/addincrement"> Add Increment </Link></div>
+                        <div className="collapse-item"><Link style={{ textDecoration: 'none' }}  to ="/incrementList"> Increment List </Link></div>
+                        {/* <a className="collapse-item" href="forgot-password.html">Forgot Password</a> */}
+                        {/* <div className="collapse-divider"></div>
                         <h6 className="collapse-header">Other Pages:</h6>
                         <a className="collapse-item" href="404.html">404 Page</a>
-                        <a className="collapse-item" href="blank.html">Blank Page</a>
+                        <a className="collapse-item" href="blank.html">Blank Page</a> */}
                     </div>
                 </div>
             </li>
-
-     
-            <li className="nav-item">
-                <a className="nav-link" href="charts.html">
-                    <i className="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
    
             <li className="nav-item active">
                 <a className="nav-link" href="tables.html">
@@ -125,5 +123,8 @@ export default function SideNavBar() {
       
         
      </div>
+     </HOCAuth>
     )
 }
+
+export default  SideNavBar
